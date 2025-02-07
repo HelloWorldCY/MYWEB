@@ -8,13 +8,13 @@ def indexView(request):
 
     types = Types.objects.all()
     # 宝宝服饰
-    cl = [x.seconds for x in types if x.firsts == '儿童服饰']
+    cl = [x.seconds for x in types if x.firsts == '大类1']
     clothes = CommodityInfos.objects.filter(types__in=cl).order_by('-sold')[:5]
     # 奶粉辅食
-    fl = [x.seconds for x in types if x.firsts == '奶粉辅食']
+    fl = [x.seconds for x in types if x.firsts == '大类2']
     food = CommodityInfos.objects.filter(types__in=fl).order_by('-sold')[:5]
     # 宝宝用品
-    gl = [x.seconds for x in types if x.firsts == '儿童用品']
+    gl = [x.seconds for x in types if x.firsts == '大类3']
     goods = CommodityInfos.objects.filter(types__in=gl).order_by('-sold')[:5]
     return render(request, 'index.html', locals())
 
@@ -34,13 +34,13 @@ class indexClassView(TemplateView):
         context['commodityInfos'] = CommodityInfos.objects.order_by('-sold').all()[:8]
         types = Types.objects.all()
         # 宝宝服饰
-        cl = [x.seconds for x in types if x.firsts == '儿童服饰']
+        cl = [x.seconds for x in types if x.firsts == '大类1']
         context['clothes'] = CommodityInfos.objects.filter(types__in=cl).order_by('-sold')[:5]
         # 奶粉辅食
-        fl = [x.seconds for x in types if x.firsts == '奶粉辅食']
+        fl = [x.seconds for x in types if x.firsts == '大类2']
         context['food'] = CommodityInfos.objects.filter(types__in=fl).order_by('-sold')[:5]
         # 宝宝用品
-        gl = [x.seconds for x in types if x.firsts == '儿童用品']
+        gl = [x.seconds for x in types if x.firsts == '大类3']
         context['goods'] = CommodityInfos.objects.filter(types__in=gl).order_by('-sold')[:5]
         return context
 
